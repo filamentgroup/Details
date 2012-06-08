@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]> 	<html lang="en" class="ie ie7"> <![endif]-->
+<!--[if IE 8 ]> 	<html lang="en" class="ie ie8"> <![endif]-->
+<!--[if IE 9 ]> 	<html lang="en" class="ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Details Polyfill</title>
+
+	<style type="text/css">
+	details, summary {
+		display: block;
+	}
+	details { 
+		border-bottom: 1px solid #777;
+		padding: .25em;
+		clear: both;
+	}
+	summary { 
+		padding: .25em 0;
+		clear: both;
+	}
+	</style>
+
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+</head>
+
+<body>
+	<h4>
+		Screen Width: <span id="width"></span>px
+	</h4>
+	
+	<details>
+		<summary>Closed</summary>
+		<div>
+			<p>Here’s some showable/hideable content.</p>
+		</div>
+	</details>
+	
+	<details open>
+		<summary>Open</summary>
+		<div>
+			<p>Here’s some showable/hideable content.</p>
+		</div>
+	</details>
+	
+	<details data-open-above="600">
+		<summary>Open Below 600px</summary>
+		<div>
+			<p>Here’s some showable/hideable content.</p>
+		</div>
+	</details>
+	
+	<details open data-open-below="600">
+		<summary>Open Above 600px</summary>
+		<div>
+			<p>Here’s some showable/hideable content.</p>
+		</div>
+	</details>
+
+	<details data-open-above>
+		<summary>Open Below 500px (default)</summary>
+		<div>
+			<p>Here’s some showable/hideable content.</p>
+		</div>
+	</details>
+	
+	<details data-open-below>
+		<summary>Open Above 500px (default)</summary>
+		<div>
+			<p>Here’s some showable/hideable content.</p>
+		</div>
+	</details>
+
+	<script>
+		function widthSetter() {
+			document.getElementById("width").innerHTML = window.innerWidth;
+		}
+
+		widthSetter();
+		window.addEventListener("resize", widthSetter);
+	</script>
+	
+	<script src="polyfill.js"></script>
+
+</body>
+</html>
