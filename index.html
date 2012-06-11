@@ -16,7 +16,6 @@
 		display: block;
 	}
 	details { 
-		border-bottom: 1px solid #777;
 		padding: .25em;
 		clear: both;
 	}
@@ -73,6 +72,25 @@
 		<summary>Open Above 500px (default)</summary>
 		<div>
 			<p>Here’s some showable/hideable content.</p>
+		</div>
+	</details>
+
+	<details>
+		<summary>Oh damn — nested <code>details</code> elements?</summary>
+		<div>
+			<p>You know that’s right.</p>
+			<details>
+				<summary>You serious?</summary>
+				<div>
+					<p>Yes yes y’all.</p>
+					<details>
+						<summary>And it don’t stop?</summary>
+						<div>
+							<p>It does not stop, no.</p>
+						</div>
+					</details>
+				</div>
+			</details>
 		</div>
 	</details>
 
