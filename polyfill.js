@@ -44,7 +44,7 @@
 				if( !det.support ) {
 					var summary = bkpt.el.getElementsByTagName("summary")[0];
 
-					polyfillToggle( summary, open );
+					det.polyfillToggle( summary, open );
 				}
 				// Update the aria attributes:
 				win.det.ariaStates( bkpt.el, open );
@@ -135,8 +135,14 @@
 						// Update the aria attributes:
 						det.ariaStates( detail, !open );
 					}
-					// Now that the user is interacting with the page, stop triggering the breakpointed collapsibles on resize.
-					window.removeEventListener( "resize", det.collapseDetails );
+
+					for( var k = 0; k < det.breakpointed.length; k++ ) {
+						var bk = det.breakpointed[ k ];
+
+						if( bk.el == this.parentNode ) {
+							det.breakpointed.splice( det.breakpointed.indexOf( bk ), 1 );
+						}
+					}
 				});
 
 				if( !det.support ) {
