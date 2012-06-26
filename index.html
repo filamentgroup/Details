@@ -47,29 +47,15 @@
 		</div>
 	</details>
 	
-	<details data-open-above="600">
+	<details data-media="(max-width: 600px)">
 		<summary>Open Below 600px</summary>
 		<div>
 			<p>Here’s some showable/hideable content.</p>
 		</div>
 	</details>
 	
-	<details open data-open-below="600">
+	<details open data-media="(min-width: 600px)">
 		<summary>Open Above 600px</summary>
-		<div>
-			<p>Here’s some showable/hideable content.</p>
-		</div>
-	</details>
-
-	<details data-open-above>
-		<summary>Open Below 500px (default)</summary>
-		<div>
-			<p>Here’s some showable/hideable content.</p>
-		</div>
-	</details>
-	
-	<details data-open-below>
-		<summary>Open Above 500px (default)</summary>
 		<div>
 			<p>Here’s some showable/hideable content.</p>
 		</div>
@@ -100,7 +86,7 @@
 		}
 
 		widthSetter();
-		window.addEventListener("resize", widthSetter);
+		window.addEventListener( "resize", widthSetter );
 	</script>
 	
 	<script src="polyfill.js"></script>
