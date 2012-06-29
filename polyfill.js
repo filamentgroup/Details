@@ -66,9 +66,9 @@
 
 			el.parentNode[ ( !open ? "set" : "remove" ) + "Attribute" ]( "open", "open" );
 			el.firstChild.innerHTML = !open ? det.closedicon : det.openicon;
-
-			for( var i = 0; i < content.length; i++ ) {
-				content[i].style.display = ( open ? "block" : "none" );
+			
+			for( var i = 0; i < content.length; i++ ) {				
+				content[i].style.display = open ? "block" : "none";
 			}
 		},
 		ariaStates : function( el, open ) {
@@ -101,13 +101,14 @@
 				}
 
 				// Make sure we can navigate to the summary via the tab key:
-				summary.setAttribute( "tabindex", 0 );
+				summary.setAttribute( "tabindex", "0" );
 
 				if( !det.support ) {
 					// Create the little toggle arrow element:
 					var tog = document.createElement("div");
 
 					tog.style.cssFloat = "left";
+					tog.style.display = "inline";
 					tog.style.paddingRight = ".5em";
 					tog.style.fontSize = ".9em";
 					tog.style.lineHeight = "1.2em";
@@ -123,13 +124,14 @@
 					det.polyfillToggle( summary, open );
 				}
 
-				summary.addEventListener("click", function(e) {
-					var detail = this.parentNode,
+				var clicked = function( e ) {
+					var el = ( win.event ) ? event.srcElement : this;
+						detail = el.parentNode,
 						open = detail.getAttribute("open") !== null;
 
 					// Show/hide the `details` content in browsers that don’t support it natively.
 					if( !det.support ) {
-						det.polyfillToggle( this, open );
+						det.polyfillToggle( el, open );
 						det.ariaStates( detail, open );
 					} else {
 						// Update the aria attributes:
@@ -139,13 +141,19 @@
 					for( var k = 0; k < det.breakpointed.length; k++ ) {
 						var bk = det.breakpointed[ k ];
 
-						if( bk.el == this.parentNode ) {
+						if( bk.el == el.parentNode ) {
 							det.breakpointed.splice( det.breakpointed.indexOf( bk ), 1 );
 						}
 					}
-				});
-
-				if( !det.support ) {
+				};
+				
+				if( win.addEventListener ) {
+					summary.addEventListener("click", clicked, false );
+				} else {
+					summary.attachEvent( "onclick", clicked );
+				}
+		
+				if( !det.support && win.addEventListener ) {
 					// Trigger a click on the `summary` element when focused and enter or the spacebar are pressed:
 					summary.addEventListener("keydown", function(e) {
 						if( e.keyCode == 32 || e.keyCode == 13 ) {
@@ -158,9 +166,16 @@
 				}
 			}
 			// If we have breakpointed `details` in that array, trigger them now and on window resize.
-			if( det.breakpointed.length ) {
+			if( det.breakpointed.length && win.matchMedia && Array.indexOf ) {
 				det.collapseDetails();
-				window.addEventListener( "resize", det.collapseDetails );
+				
+				if( !win.addEventListener ) {
+					win.addEventListener = function( evt, cb ){
+						return win.attachEvent( "on" + evt, cb );
+					};
+				}
+				
+				win.addEventListener( "resize", det.collapseDetails );
 			}
 		}
 	}
