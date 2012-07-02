@@ -1,8 +1,8 @@
 (function(win, undefined){
 	win.det = {
 		breakpointed : [],
-		closedicon : "<span class='icon i-triangle-right-blue'>+</span>",
-		openicon : "<span class='icon i-triangle-down-blue'>-</span>",
+		closedicon : "<span class='details-marker open'>+</span>",
+		openicon : "<span class='details-marker close'>-</span>",
 		support : (function() {
 			var fakeBody,
 				doc = document,
