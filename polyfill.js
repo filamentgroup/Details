@@ -93,6 +93,10 @@
 					breakpoint = detail.getAttribute( "data-media" ),
 					open = detail.getAttribute("open") !== null;
 
+				if( !summary ) {
+					continue;
+				}
+
 				det.ariaStates( detail, open );
 
 				// If there are breakpoints set, add the elements/details to a `breakpointed` array:
