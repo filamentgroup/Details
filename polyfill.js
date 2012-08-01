@@ -67,8 +67,8 @@
 			el.parentNode[ ( !open ? "set" : "remove" ) + "Attribute" ]( "open", "open" );
 			el.firstChild.innerHTML = !open ? det.closedicon : det.openicon;
 			
-			for( var i = 0; i < content.length; i++ ) {				
-				content[i].style.display = open ? "block" : "none";
+			for( var i = 0; i < content.length; i++ ) {
+				content[i].style.display = open ? "" : "none";
 			}
 		},
 		ariaStates : function( el, open ) {
