@@ -129,9 +129,16 @@
 				}
 
 				var clicked = function( e ) {
-					var el = ( win.event ) ? event.srcElement : this;
-						detail = el.parentNode,
-						open = detail.getAttribute("open") !== null;
+					var el = ( win.event ) ? event.srcElement : this,
+						detail,
+						open;
+
+					while( el.nodeName && el.nodeName !== "SUMMARY" ) {
+						el = el.parentNode;
+					}
+
+					detail = el.parentNode,
+					open = detail.getAttribute("open") !== null;
 
 					// Show/hide the `details` content in browsers that don’t support it natively.
 					if( !det.support ) {
