@@ -177,7 +177,7 @@
 				}
 			}
 			// If we have breakpointed `details` in that array, trigger them now and on window resize.
-			if( det.breakpointed.length && win.matchMedia && Array.indexOf ) {
+			if( det.breakpointed.length && win.matchMedia && Array.prototype.indexOf ) {
 				det.collapseDetails();
 				
 				if( !win.addEventListener ) {
