@@ -1,3 +1,5 @@
+:warning: This project is archived and the repository is no longer maintained.
+
 # Details, details.
 
 This is a feature test and polyfill for the HTML5 `details`/`summary` markup pattern, with a couple of extras:
@@ -14,4 +16,4 @@ In the event that JavaScript is disabled or otherwise unavailable and `details` 
 
 It should be noted that <a href="http://github.com/mathiasbynens">mathiasbynens</a> has a simple and especially robust jQuery-based <a href="https://github.com/mathiasbynens/jquery-details">test/polyfill</a> for this markup, as well.
 
-Updates to come, and <a href="http://wil.to/det/">here is a demo</a>.
+<a href="http://wil.to/det/">Demo</a>
